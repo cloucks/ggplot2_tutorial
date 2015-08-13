@@ -1,0 +1,64 @@
+---
+title: "ggplot2_tutorial"
+output: html_document
+date: 2015-08-18
+---
+
+-ggplot2 is based on a grammar that is composed of a set of independent components that can be put together in many different ways
+
+-It functions using layers where you start with the raw data then add on annotations and statistical summaries
+
+-Today we will be working with data from my research looking at how worms with different genetic defects habituate to mechanical stimuli
+
+
+```{r-load_data}
+
+#load and take a look at data
+setwd("~/Documents/PhD/Programming_study_group/ggplot2_tutorial")
+habituation <- read.table("data.txt", header=TRUE)
+head(habituation)
+
+```
+
+```{r-make_plot}
+
+#make sure ggplot2 is installed
+if(!require("ggplot2")) {
+    install.packages("ggplot2")
+    library(ggplot2)
+  }
+
+#plot time on x-axis and reversal on y-axis
+qplot(x=time, y=reversal, data=habituation)
+
+
+#look at habituation data
+head(habituation)
+
+#can also plot manipulations of data directly in ggplot2
+qplot(x=time, y=reversal/N, data=habituation)
+
+```
+
+```{r-adding_aesthetics}
+#adding aesthetics (e.g. colour, size and shape)
+qplot(x=time, y=reversal/N, data=habituation, colour=strain)
+qplot(x=time, y=reversal/N, data=habituation, shape=strain)
+qplot(x=time, y=reversal/N, data=habituation, colour=tap_number)
+
+
+
+
+
+```
+  
+  
+  
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
