@@ -12,7 +12,6 @@
 ####First make sure you have ggplot2 
 
 ```{r-get_ggplot2}
-
 #Make sure ggplot2 is installed
 if(!require("ggplot2")) {
     install.packages("ggplot2")
