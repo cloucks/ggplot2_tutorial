@@ -72,8 +72,9 @@ data
 #To look at the proportion of worms reversing, we need to divide reversal by N
 #This can be done directly in ggplot2
 
-ggplot(data, aes(tap_number, reversal/N)) + #Manipulate the y-axis to become reversal/N
+p <- ggplot(data, aes(tap_number, reversal/N)) + #Manipulate the y-axis to become reversal/N
   geom_point()
+p
 
 #Now both strains show a similar response to the intial tap
 ```
@@ -97,7 +98,7 @@ p + geom_point(aes(colour=tap_number, shape=strain, size=7)) #Can also play arou
   
   
 ####You can also experiment with geoms to get different kinds of plots 
-- (e.g. scatterplot=geom_point(), line plot = geom_line(), and boxplot=geom_boxplot)
+- (e.g. scatterplot=geom_point(), line plot = geom_line(), and boxplot=geom_boxplot())
 ```{r-varying_geom}
 
 p + geom_point(aes(colour=strain))
@@ -141,7 +142,7 @@ p + geom_point(aes(colour=strain)) +
   ylab("Proportion reversing") + #Add y-label
   scale_colour_hue("type of worm", #Change legend title
     breaks = c("mutant", "N2"), #Determine what strains are on the legend
-    labels = c("mutant", "wild-type"))
+    labels = c("mutant", "wild-type")) #Determine the names of the legend strains
 ```
 
 ####We can also decide what values we want on our axes
@@ -183,7 +184,7 @@ p + geom_point(aes(colour=strain)) +
   scale_x_continuous(limits=c(0,31), breaks=c(0,5,10,15,20,25,30)) + #Change limits and spacing in x-axis
   scale_y_continuous(limits=c(0.0,1.0), breaks=c(0.0,0.20,0.40,0.60,0.8,1.0)) + #Change limits and spacing in y-axis 
   theme_classic() + #Gives a nice white background without gridlines
-  theme(legend.title=element_blank()) #Removes legend title
+  theme(legend.title=element_blank()) #Removes legend title (can override the previous manipulation of the legend)
 ```
   
 Save plot
@@ -209,7 +210,9 @@ p + geom_point(aes(colour=strain)) +
 ```{r-make_boxplot}
 
 ggplot(data, aes(strain, N)) +
-  geom_boxplot(fill="red")
+  geom_boxplot()
+
+#you can also add a fill with geom_boxplot(fill="red")
 
 ```
 
@@ -244,3 +247,8 @@ ggplot(subset(data, tap_number>=20)) +
   scale_x_continuous(limits=c(19,31), breaks=c(20,25,30)) + #Change limits and spacing in x-axis
   scale_y_continuous(limits=c(0.0,1.0), breaks=c(0.0,0.20,0.40,0.60,0.80,1.0)) #Change limits and spacing in y-axis
 ```
+
+###Other great resources
+- Book by Hadley Wickham: "ggplot2: Elegant Graphics for Data Analysis"
+- ggplot2 Cheatsheet: https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf
+- Another ggplot2 Cheatsheet: http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/
